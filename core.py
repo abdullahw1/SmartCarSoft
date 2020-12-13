@@ -12,7 +12,7 @@ from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 from deep_sort import generate_detections as gdet
 from CollusionDetection.Predictor import time_to_contact
-
+from playsound import playsound
 
 
 class core():
@@ -79,7 +79,7 @@ class core():
         prevTime = 0
         dummy_time = 1
         t3 = 0
-
+        playsound('system_ready.wav')
         # loop for video
         while True:
             loop_check, original_frame = vid.read() # loop_check is bool value for reading correctly or not

@@ -11,4 +11,4 @@ awscli
 urllib3
 torch>=1.0
 torchvision
-
+playsound

@@ -27,9 +27,14 @@ def draw_bbox(image, bboxes, colors, NUM_CLASS, show_label=True, Text_colors=(0,
                 label +=  " " + str(track_id)
             if len(bbox) == 7:
                 label += " TTC:" + str(round(bbox[6], 2))
+                ########################
+                ##### SET THE THRESHHOLD
+                ########################
+                if round(bbox[6],2) > 0 and round(bbox[6],2) < 3:
+                    playsound('alert.mp3')
+
             # font size for relative label box size
             (text_width, text_height), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_COMPLEX_SMALL, fontScale, thickness=bbox_thick)  # text size
-
             # filled rectangle for label
             cv2.rectangle(image, (x1, y1), (x1 + text_width, y1 - text_height - baseline), bbox_color, thickness=cv2.FILLED)
 
