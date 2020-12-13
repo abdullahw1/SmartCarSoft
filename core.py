@@ -3,7 +3,6 @@ import cv2
 import random
 import colorsys
 import numpy as np
-import tensorflow as tf
 from yolo.utils import draw_bbox
 from yolo.configs import *
 from tiny_yolo.detect import Yolo

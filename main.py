@@ -1,4 +1,3 @@
-from yolo.utils import Load_Yolo_model
 import sys, getopt
 from core import core
 from yolo.configs import YOLO_INPUT_SIZE
