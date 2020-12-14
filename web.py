@@ -3,7 +3,6 @@ import cv2
 from yolo.utils import Load_Yolo_model
 import sys, getopt
 from core import core
-from yolo.configs import YOLO_INPUT_SIZE
 
 
 global yolo
@@ -19,6 +18,7 @@ def home():
 
 @app.route("/VideoForm", methods = ['POST'])
 def videoForm():
+    YOLO_INPUT_SIZE = 416
     video_path = request.form['fileInput']
     video_path = "Videos\\" + video_path
     res = core.system(yolo, video_path, "detection.mp4", input_size=YOLO_INPUT_SIZE, show=True, iou_threshold=0.1,
