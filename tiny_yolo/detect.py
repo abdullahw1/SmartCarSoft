@@ -46,6 +46,7 @@ class Yolo:
         img = transforms.ToTensor()(img)
         img, _ = pad_to_square(img, 0)
         img = resize(img, self.img_size).unsqueeze(0)
+        img = img.to(self.device)
         return img
 
     def predict(self, img):
