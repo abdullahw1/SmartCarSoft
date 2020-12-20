@@ -72,7 +72,7 @@ class core():
 
 
 
-    def system(self, video_path, output_path, input_size=416, show=False, CLASSES='tiny_yolo/data/coco.names', score_threshold=0.3, iou_threshold=0.45, rectangle_colors='', Track_only = [], display_tm = False, realTime = True ):
+    def system(self, video_path, output_path, input_size=320, show=False, CLASSES='tiny_yolo/data/coco.names', score_threshold=0.3, iou_threshold=0.45, rectangle_colors='', Track_only = [], display_tm = False, realTime = True ):
 
         # Definition of the  deep sort parameters
         max_cosine_distance = 0.7

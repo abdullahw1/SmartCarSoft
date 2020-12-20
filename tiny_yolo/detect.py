@@ -27,7 +27,7 @@ class Yolo:
         self.nms_thres = 0.4
         self.batch_size = 1
         self.n_cpu = 0
-        self.img_size = 416
+        self.img_size = 320
         # self.checkpoint_model
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = Darknet(self.model_def, img_size=self.img_size).to(self.device)

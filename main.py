@@ -46,7 +46,7 @@ def main(argv):
 
 
     c = core()
-    c.system(video_path, "detection.avi", input_size=416, show=True, iou_threshold=0.1,rectangle_colors=(255,0,0),Track_only = ['car','truck','motorbike','person'], display_tm = tm, realTime = rt )
+    c.system(video_path, "/media/dev/UUI/detection.avi", input_size=320, show=True, iou_threshold=0.1,rectangle_colors=(255,0,0),Track_only = ['car','truck','motorbike','person'], display_tm = tm, realTime = rt )
 
 
 
