@@ -54,10 +54,12 @@ class Yolo:
         with torch.no_grad():
                 d = self.model(pytorch_img)
                 d = non_max_suppression(d, self.conf_thres, self.nms_thres)
-        detections = rescale_boxes(d[0], self.img_size, img.shape[:2])
-        unique_labels = detections[:, -1].cpu().unique()
-        n_cls_preds = len(unique_labels)
+        print(d[0])
         results = []
-        for x1, y1, x2, y2, conf, cls_conf, cls_pred in detections:
-            results.append([x1, y1, x2, y2, cls_conf.item(), cls_pred])
+        if d[0] != None:
+            detections = rescale_boxes(d[0], self.img_size, img.shape[:2])
+            unique_labels = detections[:, -1].cpu().unique()
+            n_cls_preds = len(unique_labels)
+            for x1, y1, x2, y2, conf, cls_conf, cls_pred in detections:
+                results.append([x1, y1, x2, y2, cls_conf.item(), cls_pred])
         return results

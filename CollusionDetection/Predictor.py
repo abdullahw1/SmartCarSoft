@@ -11,7 +11,6 @@ def time_to_contact(original_frame,matchedBoxes, newTime, oldTime, key_list, val
     for track, detect in data:
         tbbox = track.to_tlbr()
         dbbox = detect.to_tlbr()
-        print('DBbox: ', dbbox)
         class_name = track.get_class()  # Get the class name of particular object
         tracking_id = track.track_id # Get the ID for the particular track
         index = key_list[val_list.index(class_name)] # Get predicted object index by object name

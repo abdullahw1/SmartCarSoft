@@ -157,7 +157,6 @@ class core():
             detections = [Detection(bbox, score, class_name, feature) for bbox, score, class_name, feature
                           in zip(boxes, scores, names, features)]
 
-            print('Detection boxes: ', boxes)
             if realTime:
                 tracked_bboxes = time_to_contact(original_frame, tracker.matchedBoxes, newTime, prevTime,
                                                  key_list, val_list, display_tm=display_tm)
