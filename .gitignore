@@ -3,5 +3,6 @@ tiny_yolo/weights/yolov3-tiny.weights
 tiny_yolo/weights/yolov3.weights
 tiny_yolo/__pycache__
 tiny_yolo/utils/__pycache__
+CollusionDetection/__pycache__
 __pycache__
 detection.avi
