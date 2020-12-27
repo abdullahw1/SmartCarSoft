@@ -10,6 +10,7 @@ from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 from deep_sort import generate_detections as gdet
 from CollusionDetection.Predictor import time_to_contact
+from tiny_yolo.trt_detect import TrtYOLO
 from playsound import playsound
 
 
@@ -17,6 +18,7 @@ class core():
     def __init__(self):
         self.image = 0
         self.Yolo = Yolo()
+        self.TrtYolo = TrtYOLO('trt_model', (288, 288))
 
     def getImg(self):
         return self.image
@@ -129,29 +131,29 @@ class core():
             prevTime = newTime
             newTime = time.time()
             t1 = time.time()
-            bboxes = self.Yolo.predict(original_frame)
+            boxes, scores, names = self.TrtYolo.detect(original_frame)
             t2 = time.time()
             # extract bboxes to boxes (x, y, width, height), scores and names
-            boxes, scores, names = [], [], []
-            #tracking
-            for bbox in bboxes: #loop to sperate the bounding boxes in the frames
-                if len(Track_only) !=0 and NUM_CLASS[int(bbox[5])] in Track_only or len(Track_only) == 0:
-                    x1 = int(bbox[0])
-                    y1 = int(bbox[1])
-                    x2 = int(bbox[2])
-                    y2 = int(bbox[3])
-                    scoreVal = bbox[4]
-                    class_id = int(bbox[5])
-                    boxes.append([x1, y1, x2, y2])
-                    scores.append(scoreVal)
-                    label = NUM_CLASS[class_id]
-                    names.append(label)
-                    #self.image = cv2.rectangle(original_frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+            # boxes, scores, names = [], [], []
+            # #tracking
+            # for bbox in bboxes: #loop to sperate the bounding boxes in the frames
+            #     if len(Track_only) !=0 and NUM_CLASS[int(bbox[5])] in Track_only or len(Track_only) == 0:
+            #         x1 = int(bbox[0])
+            #         y1 = int(bbox[1])
+            #         x2 = int(bbox[2])
+            #         y2 = int(bbox[3])
+            #         scoreVal = bbox[4]
+            #         class_id = int(bbox[5])
+            #         boxes.append([x1, y1, x2, y2])
+            #         scores.append(scoreVal)
+            #         label = NUM_CLASS[class_id]
+            #         names.append(label)
+            #         #self.image = cv2.rectangle(original_frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
             # Obtain all the detections for the given frame.
-            boxes = np.array(boxes)
-            names = np.array(names)
-            scores = np.array(scores)
+            # boxes = np.array(boxes)
+            # names = np.array(names)
+            # scores = np.array(scores)
             features = np.array(encoder(original_frame, boxes))
             # create deep sort object for detection
             detections = [Detection(bbox, score, class_name, feature) for bbox, score, class_name, feature
